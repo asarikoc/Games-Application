@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Games</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Titles -->
+    <string name="gta">Grand Theft Auto V</string>
+    <string name="portal2">Portal 2</string>
+    <string name="witcher">The Witcher 3</string>
+    <string name="l4d2">Left 4 Dead 2</string>
+
+    <!-- metacritics -->
+    <string name="a">96</string>
+    <string name="b">95</string>
+    <string name="c">89</string>
+    <string name="d">89</string>
+
+</resources>

@@ -1,0 +1,129 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="20.5dp"
+        android:layout_marginLeft="8.5dp"
+        android:layout_marginTop="11.5dp"
+        android:src="@drawable/arrow"/>
+
+    <TextView
+        android:id="@+id/games_button_id"
+        android:layout_width="54dp"
+        android:layout_height="22dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="12dp"
+        android:text="Games"
+        android:textColor="@color/blue"
+        android:textSize="17sp"
+        android:height="22dp"/>
+    <TextView
+        android:id="@+id/heading_id"
+        android:layout_width="54dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+
+        />
+    <TextView
+        android:id="@+id/metacritic_id"
+        android:layout_width="54dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+
+        />
+    <TextView
+        android:id="@+id/genre_id"
+        android:layout_width="54dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/favourite_button_id"
+        android:layout_width="75dp"
+        android:layout_height="22dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="202dp"
+        android:layout_marginTop="12dp"
+        android:height="22dp"
+        android:text="Favourite"
+        android:textColor="@color/blue"
+        android:textSize="17sp" />
+
+    <ImageView
+        android:id="@+id/image_description_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="88dp"
+        android:src="@drawable/gtadescription" />
+
+    <TextView
+        android:id="@+id/game_desc_id"
+        android:layout_width="343dp"
+        android:layout_height="21dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="395dp"
+        android:text="Game Description"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textColor="#313131"
+        android:textSize="17sp"
+        android:height="21dp"/>
+
+    <TextView
+        android:id="@+id/desc_id"
+        android:layout_width="343dp"
+        android:layout_height="81dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="424dp"
+        android:text="Rockstar Games went bigger, since their previous installment of the series. You get the complicated and realistic world-building from Liberty City of GTA4 in the setting of lively and diverse Los Santos, from an old fan favorite GTA San Andreas. 561 different vehicles (including every transport you can operate)...."
+        android:fontFamily="sans-serif"
+        android:textColor="#313131"
+        android:textSize="11sp"
+        android:height="81dp"/>
+
+    <TextView
+        android:id="@+id/reddit_id"
+        android:layout_width="343dp"
+        android:layout_height="21dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="537dp"
+        android:text="Visit reddit"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textColor="#313131"
+        android:textSize="17sp"
+        android:height="22dp"/>
+
+    <TextView
+        android:id="@+id/website_id"
+        android:layout_width="343dp"
+        android:layout_height="21dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="592dp"
+        android:text="Visit website"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textColor="#313131"
+        android:textSize="17sp"
+        android:height="22dp"/>
+
+</RelativeLayout>

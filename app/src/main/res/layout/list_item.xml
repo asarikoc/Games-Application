@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="375dp"
+    android:layout_height="136dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/list_item_id">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/title_image"
+        android:layout_width="120dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/gta5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundCorner" />
+
+    <TextView
+        android:layout_width="207dp"
+        android:layout_height="27dp"
+        android:id="@+id/tvheading"
+        android:textColor="@color/black"
+        android:text="Grand Theft Auto V"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/title_image"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/metacritic_tv"
+        android:layout_width="71dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="metacritic:"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/title_image"
+        app:layout_constraintTop_toBottomOf="@+id/tvheading" />
+
+    <TextView
+        android:id="@+id/metacritic"
+        android:layout_width="26dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginStart="87dp"
+        android:layout_marginEnd="32dp"
+        android:text="99"
+        android:textColor="#D80000"
+        android:textSize="14dp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/title_image"
+        app:layout_constraintTop_toBottomOf="@+id/tvheading" />
+
+    <TextView
+        android:id="@+id/genre"
+        android:layout_width="207dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="12dp"
+        android:text="Action, puzzle"
+        android:textColor="#8A8A8F"
+        android:textSize="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/title_image"
+        app:layout_constraintTop_toBottomOf="@+id/metacritic" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
