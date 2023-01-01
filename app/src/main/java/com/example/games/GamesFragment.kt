@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.os.Bundle
 import android.view.View
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import java.util.ArrayList
+import java.util.*
 
 class GamesFragment : Fragment() {
 
@@ -17,6 +19,7 @@ class GamesFragment : Fragment() {
     private lateinit var myrecyclerview: RecyclerView
     private lateinit var listGames: ArrayList<Games>
     lateinit var games : Array<String>
+    private lateinit var searchView : SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,11 +59,35 @@ class GamesFragment : Fragment() {
                 intent.putExtra("games",games[position])
                 startActivity(intent)
             }
+        })
 
+        searchView = v.findViewById(R.id.searchView)
+        searchView.clearFocus()
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                if(query != null){
+                    val filteredList = ArrayList<Games>()
+                    for (i in listGames){
+                        if(i.heading.lowercase(Locale.ROOT).contains(query)){
+                            filteredList.add(i)
+                        }
+                    }
+                    if(filteredList.isEmpty()){
+                        Toast.makeText(activity,"No Data found", Toast.LENGTH_SHORT).show()
+                    }else{
+                        adapter.setFilteredList(filteredList)
+                    }
+                }
+                return true
+            }
 
         })
+
         return v
     }
-
 
 }

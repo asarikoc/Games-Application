@@ -10,7 +10,7 @@
         android:layout_marginTop="11.5dp"
         android:src="@drawable/arrow"/>
 
-    <TextView
+    <Button
         android:id="@+id/games_button_id"
         android:layout_width="54dp"
         android:layout_height="22dp"

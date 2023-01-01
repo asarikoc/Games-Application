@@ -1,9 +1,11 @@
 package com.example.games
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_games.*
 
 class GamesActivity : AppCompatActivity() {
 
@@ -30,6 +32,11 @@ class GamesActivity : AppCompatActivity() {
         metacriticGames.text = metacritic
         genreGames.text = genre
         mainGames.text = games
+
+
+        games_button_id.setOnClickListener{
+            finish()
+        }
 
     }
 }

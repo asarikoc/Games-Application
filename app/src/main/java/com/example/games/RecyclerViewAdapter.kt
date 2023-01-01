@@ -30,6 +30,10 @@ class RecyclerViewAdapter( var gamesList: List<Games>) :
 
     }
 
+    fun setFilteredList(gamesList: List<Games>){
+        this.gamesList = gamesList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
