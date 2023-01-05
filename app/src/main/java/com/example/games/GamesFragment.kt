@@ -10,6 +10,13 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.list_item.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class GamesFragment : Fragment() {
@@ -30,61 +37,80 @@ class GamesFragment : Fragment() {
         myrecyclerview = v.findViewById(R.id.games_recyclerview)
         myrecyclerview.layoutManager = LinearLayoutManager(activity)
         myrecyclerview.setHasFixedSize(true)
+
         listGames = ArrayList()
-        listGames.add(Games(R.drawable.gta5, "Grand Theft Auto V", "96", "Action, shooter"))
-        listGames.add(Games(R.drawable.portal2, "Portal 2", "95", "Action, puzzle"))
-        listGames.add(Games(R.drawable.witcher, "The Witcher 3", "89", "Action, puzzle"))
-        listGames.add(Games(R.drawable.l4d2, "Left 4 Dead 2", "89", "Action, puzzle"))
 
-        games = arrayOf(
-            "Rockstar Games went bigger, since their previous installment of the series. You get the complicated and realistic world-building from Liberty City of GTA4 in the setting of lively and diverse Los Santos, from an old fan favorite GTA San Andreas. 561 different vehicles (including every transport you can operate)",
-            "b",
-            "c",
-            "d"
-        )
+        val retrofit:Retrofit = Retrofit.Builder()
+            .baseUrl("https://api.rawg.io/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val api:ApiInterface = retrofit.create(ApiInterface::class.java)
 
-        var adapter = RecyclerViewAdapter(listGames)
-        myrecyclerview.adapter = adapter
-        adapter.setOnItemClickListener(object: RecyclerViewAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
+        val call: Call<DataModel> = api.getData("3be8af6ebf124ffe81d90f514e59856c")
 
-                //Toast.makeText(activity,"you clicked on item no. $position",Toast.LENGTH_SHORT).show()
+        call.enqueue(object: Callback<DataModel>{
+            override fun onResponse(call: Call<DataModel>, response: Response<DataModel>) {
 
+                if (response.isSuccessful){
+                    listGames.clear()
+                    for ( myData in response.body()!!.results!!){
 
-                val intent = Intent(activity,GamesActivity::class.java)
-                intent.putExtra("imageID",listGames[position].titleImage)
-                intent.putExtra("heading",listGames[position].heading)
-                intent.putExtra("metacritic",listGames[position].metacritic)
-                intent.putExtra("genre",listGames[position].genre)
-                intent.putExtra("games",games[position])
-                startActivity(intent)
-            }
-        })
-
-        searchView = v.findViewById(R.id.searchView)
-        searchView.clearFocus()
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(query: String?): Boolean {
-                if(query != null){
-                    val filteredList = ArrayList<Games>()
-                    for (i in listGames){
-                        if(i.heading.lowercase(Locale.ROOT).contains(query)){
-                            filteredList.add(i)
+                        listGames.add(
+                            Games(0,
+                                myData.name,
+                                myData.metacritic.toString(),
+                                "aa"
+                            ))
+                        //listGames.add(
+                        //    ResultsItem(
+                        //        myData.rating,
+                        //        myData.metacritic,
+                        //        myData.genres,
+                        //        myData.id,
+                        //        myData.backgroundImage,
+                        //        myData.name))
+                    }
+                    Toast.makeText(activity,"response döndü",Toast.LENGTH_SHORT).show()
+                    val adapter = RecyclerViewAdapter(listGames)
+                    adapter.notifyDataSetChanged()
+                    myrecyclerview.adapter = adapter
+                    adapter.setOnItemClickListener(object: RecyclerViewAdapter.onItemClickListener{
+                        override fun onItemClick(position: Int) {
+                            val intent = Intent(activity,GamesActivity::class.java)
+                            intent.putExtra("id",response.body()!!.results!![position].id)
+                            startActivity(intent)
                         }
-                    }
-                    if(filteredList.isEmpty()){
-                        Toast.makeText(activity,"No Data found", Toast.LENGTH_SHORT).show()
-                    }else{
-                        adapter.setFilteredList(filteredList)
-                    }
-                }
-                return true
-            }
+                    })
+                    searchView = v.findViewById(R.id.searchView)
+                    searchView.clearFocus()
+                    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                        override fun onQueryTextSubmit(query: String?): Boolean {
+                            return false
+                        }
 
+                        override fun onQueryTextChange(query: String?): Boolean {
+                            if(query != null){
+                                val filteredList = ArrayList<Games>()
+                                for (i in listGames){
+                                    if(i.heading.lowercase(Locale.ROOT).contains(query)){
+                                        filteredList.add(i)
+                                    }
+                                }
+                                if(filteredList.isEmpty()){
+                                    Toast.makeText(activity,"No Data found", Toast.LENGTH_SHORT).show()
+                                }else{
+                                    adapter.setFilteredList(filteredList)
+                                }
+                            }
+                            return true
+                        }
+
+                    })
+                }
+            }
+            override fun onFailure(call: Call<DataModel?>, t: Throwable) {
+                Toast.makeText(activity,"Error",Toast.LENGTH_SHORT).show()
+            }
         })
 
         return v

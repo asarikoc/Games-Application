@@ -14,23 +14,19 @@ class GamesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_games)
 
         val imageGames : ImageView = findViewById(R.id.image_description_id)
-        val headingGames : TextView = findViewById(R.id.heading_id)
-        val metacriticGames : TextView = findViewById(R.id.metacritic_id)
-        val genreGames : TextView = findViewById(R.id.genre_id)
         val mainGames : TextView = findViewById(R.id.desc_id)
+
 
         val bundle : Bundle?= intent.extras
 
-        val heading = bundle!!.getString("heading")
-        val imageId = bundle.getInt("imageID")
-        val metacritic = bundle.getString("metacritic")
-        val genre = bundle.getString("genre")
-        val games = bundle.getString("games")
+        //TODO: id alındı. Id ile yeni api servisi oluştur desc sayfasını doldur.
+        val Id = bundle?.getInt("id")
+        val imageId = bundle?.getInt("imageID")
+        val games = bundle?.getString("games")
 
-        imageGames.setImageResource(imageId)
-        headingGames.text = heading
-        metacriticGames.text = metacritic
-        genreGames.text = genre
+        if (imageId != null) {
+            imageGames.setImageResource(imageId)
+        }
         mainGames.text = games
 
 
