@@ -7,38 +7,16 @@
     android:id="@+id/fragment_container_games"
     tools:context=".GamesFragment"
     >
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint"
-        android:layout_width="375dp"
-        android:layout_height="140dp" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="111dp"
-        android:layout_height="41dp"
-        android:layout_alignBottom="@+id/constraint"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="11dp"
-        android:fontFamily="sans-serif"
-        android:gravity="top"
-        android:lineSpacingExtra="0sp"
-        android:text="Games"
-        android:textColor="@color/black"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        android:translationY="-0.21sp"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="92dp" />
 
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:layout_height="36dp"
-        android:layout_below="@+id/constraint"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="2dp"
         android:background="@color/white"

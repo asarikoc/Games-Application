@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item.*
 import retrofit2.Call
@@ -58,6 +60,8 @@ class GamesFragment : Fragment() {
                         for ( myGenres in myData.genres!!){
                             genresGame += myGenres.name +" "
                         }
+                        val myUrl : String = myData.backgroundImage
+
                         listGames.add(
                             Games(0,
                                 myData.name,
@@ -65,7 +69,6 @@ class GamesFragment : Fragment() {
                                 genresGame
                             ))
                     }
-                    Toast.makeText(activity,"response döndü",Toast.LENGTH_SHORT).show()
                     val adapter = RecyclerViewAdapter(listGames)
                     adapter.notifyDataSetChanged()
                     myrecyclerview.adapter = adapter

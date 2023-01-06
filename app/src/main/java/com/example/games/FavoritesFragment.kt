@@ -30,7 +30,9 @@ class FavoritesFragment : Fragment() {
         myrecyclerview.setHasFixedSize(true)
 
         listGames = ArrayList()
+        //3498, id
         listGames.add(Games(R.drawable.gta5, "Grand Theft Auto V", "96", "Action, shooter"))
+        //4200 ,id
         listGames.add(Games(R.drawable.portal2, "Portal 2", "95", "Action, puzzle"))
 
         var adapter = RecyclerViewAdapter(listGames)
@@ -40,11 +42,8 @@ class FavoritesFragment : Fragment() {
             override fun onItemClick(position: Int) {
 
                 val intent = Intent(activity,GamesActivity::class.java)
-                intent.putExtra("imageID",listGames[position].titleImage)
-                intent.putExtra("heading",listGames[position].heading)
-                intent.putExtra("metacritic",listGames[position].metacritic)
-                intent.putExtra("genre",listGames[position].genre)
-                intent.putExtra("games",games[position])
+                intent.putExtra("id",3498)
+
                 startActivity(intent)
             }
         })
