@@ -54,21 +54,16 @@ class GamesFragment : Fragment() {
                 if (response.isSuccessful){
                     listGames.clear()
                     for ( myData in response.body()!!.results!!){
-
+                        var genresGame : String = ""
+                        for ( myGenres in myData.genres!!){
+                            genresGame += myGenres.name +" "
+                        }
                         listGames.add(
                             Games(0,
                                 myData.name,
                                 myData.metacritic.toString(),
-                                "aa"
+                                genresGame
                             ))
-                        //listGames.add(
-                        //    ResultsItem(
-                        //        myData.rating,
-                        //        myData.metacritic,
-                        //        myData.genres,
-                        //        myData.id,
-                        //        myData.backgroundImage,
-                        //        myData.name))
                     }
                     Toast.makeText(activity,"response döndü",Toast.LENGTH_SHORT).show()
                     val adapter = RecyclerViewAdapter(listGames)
