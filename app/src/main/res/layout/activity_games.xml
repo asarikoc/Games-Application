@@ -16,36 +16,13 @@
         android:layout_height="38dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="3dp"
         android:background="?android:attr/selectableItemBackground"
         android:height="22dp"
         android:text="Games"
         android:textColor="@color/blue"
         android:textSize="17sp" />
-    <TextView
-        android:id="@+id/heading_id"
-        android:layout_width="54dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/white"
-
-        />
-    <TextView
-        android:id="@+id/metacritic_id"
-        android:layout_width="54dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/white"
-
-        />
-    <TextView
-        android:id="@+id/genre_id"
-        android:layout_width="54dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/white"
-        />
 
     <TextView
         android:id="@+id/favourite_button_id"
@@ -65,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="68dp"
         />
 
     <TextView
@@ -93,29 +70,30 @@
         android:height="81dp"
         android:layout_below="@id/game_desc_id"/>
 
-    <TextView
+    <Button
         android:id="@+id/reddit_id"
         android:layout_width="343dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="16dp"
+        android:layout_height="41dp"
         android:text="Visit reddit"
+        android:background="?android:attr/selectableItemBackground"
         android:fontFamily="sans-serif"
         android:textStyle="bold"
-        android:textColor="#313131"
-        android:textSize="17sp"
-        android:height="22dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textAlignment="textStart"
         android:layout_below="@id/desc_id"/>
 
-    <TextView
+    <Button
         android:id="@+id/website_id"
         android:layout_width="343dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="16dp"
+        android:layout_height="41dp"
         android:text="Visit website"
+        android:textAlignment="textStart"
+        android:background="?android:attr/selectableItemBackground"
         android:fontFamily="sans-serif"
         android:textStyle="bold"
-        android:textColor="#313131"
-        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
         android:height="22dp"
         android:layout_below="@id/reddit_id"/>
 

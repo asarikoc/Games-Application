@@ -28,6 +28,8 @@ class GamesActivity : AppCompatActivity() {
         val imageGames : ImageView = findViewById(R.id.image_description_id)
         val mainGames : TextView = findViewById(R.id.desc_id)
         val favGames : TextView = findViewById(R.id.favourite_button_id)
+        var redditUrl : String = ""
+        var websiteUrl : String = ""
 
         val bundle : Bundle?= intent.extras
 
@@ -36,6 +38,7 @@ class GamesActivity : AppCompatActivity() {
             favGames.text = "Favorited"
         }
 
+        // API
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://api.rawg.io/api/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -47,6 +50,8 @@ class GamesActivity : AppCompatActivity() {
         call.enqueue(object: Callback<DetailResults> {
             override fun onResponse(call: Call<DetailResults>, response: Response<DetailResults>) {
                 mainGames.text = response.body()!!.description
+                redditUrl = response.body()!!.reddit_url
+                websiteUrl = response.body()!!.website
                 val myUrl : String = response.body()!!.backgroundImage
                 Glide.with(this@GamesActivity).load(myUrl).into(imageGames)
              }
@@ -54,9 +59,20 @@ class GamesActivity : AppCompatActivity() {
                 Toast.makeText(this@GamesActivity,"Error", Toast.LENGTH_SHORT).show()
             }
         })
-
         games_button_id.setOnClickListener{
             finish()
+        }
+        // visits reddit
+        reddit_id.setOnClickListener{
+            val openURL = Intent(android.content.Intent.ACTION_VIEW)
+            openURL.data = Uri.parse(redditUrl)
+            startActivity(openURL)
+        }
+        // visits website
+        website_id.setOnClickListener{
+            val openURL = Intent(android.content.Intent.ACTION_VIEW)
+            openURL.data = Uri.parse(websiteUrl)
+            startActivity(openURL)
         }
 
     }
