@@ -31,11 +31,11 @@ class FavoritesFragment : Fragment() {
 
         listGames = ArrayList()
         //3498, id
-        listGames.add(Games(R.drawable.gta5, "Grand Theft Auto V", "96", "Action, shooter"))
+        //listGames.add(Games(R.drawable.gta5, "Grand Theft Auto V", "96", "Action, shooter"))
         //4200 ,id
-        listGames.add(Games(R.drawable.portal2, "Portal 2", "95", "Action, puzzle"))
+        //listGames.add(Games(R.drawable.portal2, "Portal 2", "95", "Action, puzzle"))
 
-        var adapter = RecyclerViewAdapter(listGames)
+        var adapter = RecyclerViewAdapter(listGames,activity)
         myrecyclerview.adapter = adapter
 
         adapter.setOnItemClickListener(object: RecyclerViewAdapter.onItemClickListener{

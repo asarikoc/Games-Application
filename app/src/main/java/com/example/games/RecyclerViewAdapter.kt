@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
-import androidx.constraintlayout.widget.ConstraintLayout
 import android.widget.TextView
-import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.imageview.ShapeableImageView
-import org.w3c.dom.Text
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.Glide
 
-class RecyclerViewAdapter( var gamesList: List<Games>) :
+class RecyclerViewAdapter( var gamesList: List<Games>, private val adapterContext: Context?) :
     RecyclerView.Adapter<MyViewHolder>() {
 
     private lateinit var  mListener : onItemClickListener
@@ -42,7 +42,17 @@ class RecyclerViewAdapter( var gamesList: List<Games>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = gamesList[position]
-        holder.img.setImageResource(currentItem.titleImage)
+        val circularProgressDrawable = CircularProgressDrawable(adapterContext!!)
+
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+
+        Glide.with(holder.img.context)
+            .load(currentItem.titleImage)
+            .placeholder(circularProgressDrawable)
+            .into(holder.img)
+
         holder.tv_heading.text = currentItem.heading
         holder.tv_metacritic.text = currentItem.metacritic
         holder.tv_genre.text = currentItem.genre
@@ -54,7 +64,7 @@ class RecyclerViewAdapter( var gamesList: List<Games>) :
 
     class MyViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
 
-        val img : ShapeableImageView = itemView.findViewById(R.id.title_image)
+        var img : ImageView = itemView.findViewById(R.id.title_image)
         val tv_heading : TextView = itemView.findViewById(R.id.tvheading)
         val tv_metacritic : TextView = itemView.findViewById(R.id.metacritic)
         val tv_genre : TextView = itemView.findViewById(R.id.genre)

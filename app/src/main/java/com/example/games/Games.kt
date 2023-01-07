@@ -1,3 +1,5 @@
 package com.example.games
 
-data class Games(var titleImage : Int, var heading : String, var metacritic : String, var genre : String)
+import android.widget.ImageView
+
+data class Games(var titleImage : String, var heading : String, var metacritic : String, var genre : String)

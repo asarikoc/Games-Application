@@ -25,6 +25,11 @@
         android:queryBackground="@color/white"
         android:queryHint="Search for the games" />
 
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/imageView_id"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

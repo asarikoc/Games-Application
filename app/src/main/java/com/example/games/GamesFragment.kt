@@ -1,25 +1,30 @@
 package com.example.games
 
+import android.accounts.AccountManager.get
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.list_item.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Array.get
 import java.util.*
+import java.util.concurrent.Executors
 
 class GamesFragment : Fragment() {
 
@@ -50,35 +55,47 @@ class GamesFragment : Fragment() {
 
         val call: Call<DataModel> = api.getData("3be8af6ebf124ffe81d90f514e59856c")
 
+
         call.enqueue(object: Callback<DataModel>{
             override fun onResponse(call: Call<DataModel>, response: Response<DataModel>) {
 
                 if (response.isSuccessful){
                     listGames.clear()
+
                     for ( myData in response.body()!!.results!!){
                         var genresGame : String = ""
                         for ( myGenres in myData.genres!!){
                             genresGame += myGenres.name +" "
                         }
                         val myUrl : String = myData.backgroundImage
+                        //
+                        // val imageView : ImageView = v.findViewById(R.id.imageView_id)
+                        //
+                        //
+                        // Picasso.with(context) // Context
+                        //     .load(myUrl) // URL
+                        //     .into(imageView) // An ImageView object to show the loaded image
 
                         listGames.add(
-                            Games(0,
+                            Games(
+                                myUrl,
                                 myData.name,
                                 myData.metacritic.toString(),
                                 genresGame
                             ))
                     }
-                    val adapter = RecyclerViewAdapter(listGames)
+                    val adapter = RecyclerViewAdapter(listGames, activity!!)
                     adapter.notifyDataSetChanged()
                     myrecyclerview.adapter = adapter
-                    adapter.setOnItemClickListener(object: RecyclerViewAdapter.onItemClickListener{
+                    adapter?.setOnItemClickListener(object: RecyclerViewAdapter.onItemClickListener{
                         override fun onItemClick(position: Int) {
                             val intent = Intent(activity,GamesActivity::class.java)
                             intent.putExtra("id",response.body()!!.results!![position].id)
                             startActivity(intent)
                         }
                     })
+
+                    // Search for games
                     searchView = v.findViewById(R.id.searchView)
                     searchView.clearFocus()
                     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -97,7 +114,7 @@ class GamesFragment : Fragment() {
                                 if(filteredList.isEmpty()){
                                     Toast.makeText(activity,"No Data found", Toast.LENGTH_SHORT).show()
                                 }else{
-                                    adapter.setFilteredList(filteredList)
+                                    adapter?.setFilteredList(filteredList)
                                 }
                             }
                             return true
